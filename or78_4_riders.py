@@ -1,27 +1,28 @@
 import random
 import or78_helpers
+from i18n import _
 
 
 def outcome(this_vars):
     if this_vars.hostility_of_riders:
-        print("RIDERS WERE HOSTILE--CHECK FOR LOSSES")
+        print(_("RIDERS WERE HOSTILE--CHECK FOR LOSSES"))
         if this_vars.amount_spent_on_bullets < 0:
-            print("YOU RAN OUT OF BULLETS AND GOT MASSACRED BY THE RIDERS")
+            print(_("YOU RAN OUT OF BULLETS AND GOT MASSACRED BY THE RIDERS"))
             this_vars.dead = True
     else:
-        print("RIDERS WERE FRIENDLY, BUT CHECK FOR POSSIBLE LOSSES")
+        print(_("RIDERS WERE FRIENDLY, BUT CHECK FOR POSSIBLE LOSSES"))
 
 
 def shooting_outcome(response_time, this_vars):
     if response_time <= 1:
-        print("NICE SHOOTING---YOU DROVE THEM OFF")
+        print(_("NICE SHOOTING---YOU DROVE THEM OFF"))
         outcome(this_vars)
     elif response_time <= 4:
-        print("KINDA SLOW WITH YOUR COLT .45")
+        print(_("KINDA SLOW WITH YOUR COLT .45"))
         outcome(this_vars)
     else:
         this_vars.is_injured = True
-        print("YOU HAVE TO SEE OL' DOC BLANCHARD")
+        print(_("YOU HAVE TO SEE OL' DOC BLANCHARD"))
         outcome(this_vars)
 
 
@@ -43,7 +44,7 @@ def run_from_riders(this_vars):
 
 def continue_anyway(this_vars):
     if random.random() > 0.8:
-        print("THEY DID NOT ATTACK")
+        print(_("THEY DID NOT ATTACK"))
     else:
         this_vars.amount_spent_on_bullets -= 150
         this_vars.amount_spent_on_miscellaneous -= 15
@@ -92,7 +93,7 @@ def riders(this_vars):
         this_vars.hostility_of_riders = not this_vars.hostility_of_riders
     choice = 0
     while choice < 1 or choice > 4:
-        print("TACTICS")
+        print(_("TACTICS"))
         choice = or78_helpers.input_int(
             "(1) RUN  (2) ATTACK  (3) CONTINUE  (4) CIRCLE WAGONS? "
         )

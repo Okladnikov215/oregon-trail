@@ -1,4 +1,4 @@
-﻿"""
+"""
 Internationalization module for Oregon Trail.
 
 Usage:

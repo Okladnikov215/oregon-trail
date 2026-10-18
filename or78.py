@@ -6,6 +6,7 @@ from or78_4_riders import riders
 from or78_5_events import events
 from or78_6_mountain import mountain
 from or78_7_endings import death, final_turn
+from i18n import _
 
 """
  The program that follows is a reconstruction
@@ -73,7 +74,7 @@ def game():
     if not g_vars.dead:
         final_turn(g_vars)
 
-    print("END")
+    print(_("END"))
 
 
 if __name__ == "__main__":

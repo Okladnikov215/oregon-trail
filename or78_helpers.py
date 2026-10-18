@@ -1,5 +1,6 @@
 import random
 import time
+from i18n import _
 
 
 def input_yes_no(message):
@@ -32,15 +33,15 @@ def shooting(shooting_level):
 def illness(this_vars):
     RND = random.random()
     if 100 * RND < 10 + 35 * (this_vars.choice_of_eating - 1):
-        print("MILD ILLNESS---MEDICINE USED")
+        print(_("MILD ILLNESS---MEDICINE USED"))
         this_vars.total_mileage -= 5
         this_vars.amount_spent_on_miscellaneous -= 2
     elif 100 * RND < 100 - (40 / 4 ** (this_vars.choice_of_eating - 1)):
-        print("BAD ILLNESS---MEDICINE USED")
+        print(_("BAD ILLNESS---MEDICINE USED"))
         this_vars.total_mileage -= 5
         this_vars.amount_spent_on_miscellaneous -= 5
     else:
-        print("SERIOUS ILLNESS")
-        print("YOU MUST STOP FOR MEDICAL ATTENTION")
+        print(_("SERIOUS ILLNESS"))
+        print(_("YOU MUST STOP FOR MEDICAL ATTENTION"))
         this_vars.amount_spent_on_miscellaneous -= 10
         this_vars.has_illness = True
