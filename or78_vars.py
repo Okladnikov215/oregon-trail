@@ -1,3 +1,4 @@
+from i18n import _
 class GameGlobals:
     def __init__(self):
         self.dead = False
@@ -53,20 +54,20 @@ class GameGlobals:
         self.amount_spent_on_miscellaneous = max(
             int(self.amount_spent_on_miscellaneous), 0
         )
-        print("=================================================")
-        print("FOOD: ", self.amount_spent_on_food)
-        print("BULLETS: ", self.amount_spent_on_bullets)
-        print("CLOTHING:", self.amount_spent_on_clothing)
-        print("MISC. SUPPLIES: ", self.amount_spent_on_miscellaneous)
-        print("CASH : $", self.cash_total)
-        print("=================================================")
+        print(_("================================================="))
+        print(_("FOOD: "), self.amount_spent_on_food)
+        print(_("BULLETS: "), self.amount_spent_on_bullets)
+        print(_("CLOTHING:"), self.amount_spent_on_clothing)
+        print(_("MISC. SUPPLIES: "), self.amount_spent_on_miscellaneous)
+        print(_("CASH : $"), self.cash_total)
+        print(_("================================================="))
 
     def increment_turn(self):
         self.current_date += 1
 
     def print_too_long(self):
-        print("YOU HAVE BEEN ON THE TRAIL TOO LONG ------")
-        print("YOUR FAMILY DIES IN THE FIRST BLIZZARD OF WINTER")
+        print(_("YOU HAVE BEEN ON THE TRAIL TOO LONG ------"))
+        print(_("YOUR FAMILY DIES IN THE FIRST BLIZZARD OF WINTER"))
         self.dead = True
 
     def no_turns_left(self, arr):

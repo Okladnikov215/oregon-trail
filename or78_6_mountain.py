@@ -1,9 +1,10 @@
 import random
 import or78_helpers
+from i18n import _
 
 
 def blizzard(this_vars):
-    print("BLIZZARD IN MOUNTAIN PASS--TIME AND SUPPLIES LOST")
+    print(_("BLIZZARD IN MOUNTAIN PASS--TIME AND SUPPLIES LOST"))
     this_vars.is_blizzard = True
     this_vars.amount_spent_on_food -= 25
     this_vars.amount_spent_on_miscellaneous -= 10
@@ -33,24 +34,24 @@ def south_pass(this_vars):
         if random.random() < 0.8:
             blizzard(this_vars)
         else:
-            print("YOU MADE IT SAFELY THROUGH SOUTH PASS--NO SNOW")
+            print(_("YOU MADE IT SAFELY THROUGH SOUTH PASS--NO SNOW"))
 
 
 def rugged_mountain(this_vars):
-    print("RUGGED MOUNTAINS")
+    print(_("RUGGED MOUNTAINS"))
     if random.random() > 0.1:
         if random.random() > 0.11:
-            print("THE GOING GETS SLOW")
+            print(_("THE GOING GETS SLOW"))
             this_vars.total_mileage -= 45 - (random.random / 0.2)
             south_pass(this_vars)
         else:
-            print("WAGON DAMAGED!—LOSE TIME AND SUPPLIES")
+            print(_("WAGON DAMAGED!—LOSE TIME AND SUPPLIES"))
             this_vars.amount_spent_on_miscellaneous -= 5
             this_vars.amount_spent_on_bullets -= 200
             this_vars.total_mileage -= 20 - (20 * random.random())
             south_pass(this_vars)
     else:
-        print("YOU GOT LOST---LOSE VALUABLE TIME TRYING TO FIND TRAIL!")
+        print(_("YOU GOT LOST---LOSE VALUABLE TIME TRYING TO FIND TRAIL!"))
         this_vars.total_mileage -= 60
         south_pass(this_vars)
 

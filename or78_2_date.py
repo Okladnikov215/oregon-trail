@@ -1,3 +1,4 @@
+from i18n import _
 dates = [
     "MARCH 29",
     "APRIL 12 ",
@@ -33,9 +34,9 @@ weekdays = [
 
 
 def print_date(turn_number):
-    print("==================================================")
+    print(_("=================================================="))
     print("{} {} 1847".format(weekdays[0], dates[turn_number]))
-    print("==================================================")
+    print(_("=================================================="))
 
 
 def print_weekday(amount):

@@ -1,10 +1,11 @@
 import or78_helpers
 import random
+from i18n import _
 
 
 def begin(this_vars):
     if this_vars.amount_spent_on_food < 13:
-        print("YOU'D BETTER DO SOME HUNTING OR BUY FOOD AND SOON!!!!")
+        print(_("YOU'D BETTER DO SOME HUNTING OR BUY FOOD AND SOON!!!!"))
     this_vars.cash_total = int(this_vars.cash_total)
     this_vars.total_mileage = int(this_vars.total_mileage)
     this_vars.total_mileage_previous_turn = this_vars.total_mileage
@@ -13,7 +14,7 @@ def begin(this_vars):
         if this_vars.cash_total < 0:
             this_vars.dead = True
         else:
-            print("DOCTOR'S BILL IS $20")
+            print(_("DOCTOR'S BILL IS $20"))
             this_vars.is_injured = this_vars.has_illness = False
     else:
         print("TOTAL MILEAGE IS {}".format(this_vars.total_mileage))
@@ -22,14 +23,14 @@ def begin(this_vars):
 
 def spend(value, purse):
     if value > purse:
-        print("YOU DON'T HAVE THAT MUCH--KEEP YOUR SPENDING DOWN")
-        print("YOU MISS YOUR CHANCE TO SPEND ON THAT ITEM")
+        print(_("YOU DON'T HAVE THAT MUCH--KEEP YOUR SPENDING DOWN"))
+        print(_("YOU MISS YOUR CHANCE TO SPEND ON THAT ITEM"))
         return purse, value, False
     return purse - value, value, True
 
 
 def fort(this_vars):
-    print("ENTER WHAT YOU WISH TO SPEND ON THE FOLLOWING: ")
+    print(_("ENTER WHAT YOU WISH TO SPEND ON THE FOLLOWING: "))
     this_vars.cash_total, P, is_purchase = spend(
         or78_helpers.input_int("FOOD"), this_vars.cash_total
     )
@@ -62,15 +63,15 @@ def fort(this_vars):
 
 def hunt(this_vars):
     if this_vars.amount_spent_on_bullets <= 39:
-        print("TOUGH---YOU NEED M0RE BULLETS TO GO HUNTING")
+        print(_("TOUGH---YOU NEED M0RE BULLETS TO GO HUNTING"))
         choices(this_vars)
     else:
         this_vars.total_mileage -= 45
         RND = random.random()
         response_time = or78_helpers.shooting(this_vars.shooting_level)
         if response_time <= 1:
-            print("RIGHT BETWEEN THE EYES---YOU OOT A BIG ONE!!!!")
-            print("FULL BELLIES TONIGHT!")
+            print(_("RIGHT BETWEEN THE EYES---YOU OOT A BIG ONE!!!!"))
+            print(_("FULL BELLIES TONIGHT!"))
             this_vars.amount_spent_on_food = (this_vars.amount_spent_on_food + 52) + (
                 RND * 6
             )
@@ -78,9 +79,9 @@ def hunt(this_vars):
                 this_vars.amount_spent_on_bullets - 10
             ) - (RND * 4)
         elif 100 * RND < 13 * response_time:
-            print("YOU MISSED---AND YOUR DINNER GOT AWAY.....")
+            print(_("YOU MISSED---AND YOUR DINNER GOT AWAY....."))
         else:
-            print("NICE SHOT--RIGHT ON TARGET--GOOD EATIN' TONIGHT!!")
+            print(_("NICE SHOT--RIGHT ON TARGET--GOOD EATIN' TONIGHT!!"))
             this_vars.amount_spent_on_food = (this_vars.amount_spent_on_food + 48) - (
                 2 * response_time
             )
@@ -125,7 +126,7 @@ def eating(this_vars):
         )
     eaten = (this_vars.amount_spent_on_food - 8) - (5 * this_vars.choice_of_eating)
     if eaten < 0:
-        print("YOU CAN'T EAT THAT WELL")
+        print(_("YOU CAN'T EAT THAT WELL"))
     else:
         this_vars.amount_spent_on_food = eaten
         this_vars.total_mileage += (

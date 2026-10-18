@@ -1,4 +1,5 @@
 import or78_helpers
+from i18n import _
 
 
 def need_intro():
@@ -67,9 +68,9 @@ def oxen():
     while amount < 200 or amount > 300:
         amount = or78_helpers.input_int(message)
         if amount < 200:
-            print("NOT ENOUGH")
+            print(_("NOT ENOUGH"))
         elif amount > 300:
-            print("TOO MUCH")
+            print(_("TOO MUCH"))
     return amount
 
 
@@ -79,7 +80,7 @@ def general_expenses(var):
     while amount < 0:
         amount = or78_helpers.input_int(message)
         if amount < 0:
-            print("IMPOSSIBLE")
+            print(_("IMPOSSIBLE"))
     return amount
 
 
@@ -105,7 +106,7 @@ def init(this_vars):
             - this_vars.amount_spent_on_miscellaneous
         )
         if this_vars.cash_total < 0:
-            print("YOU OVERSPENT--YOU ONLY HAD $700 TO SPEND.  BUY AGAIN.")
+            print(_("YOU OVERSPENT--YOU ONLY HAD $700 TO SPEND.  BUY AGAIN."))
 
     print(
         "AFTER ALL YOUR PURCHASES, YOU NOW HAVE {} DOLLARS LEFT".format(
