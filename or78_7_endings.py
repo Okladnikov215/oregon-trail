@@ -11,7 +11,7 @@ def final_turn(this_vars):
         1 - this_vars.fraction_of_2_weeks
     ) * (8 + 5 * this_vars.choice_of_eating)
     print(_("YOU FINALLY ARRIVED AT OREGON CITY"))
-    print(_("AFTER g_vars.GOAL_IN_MILES LONG MILES---HOORAY !!!!!"))
+    print(_("AFTER"), g_vars.GOAL_IN_MILES, _("LONG MILES---HOORAY !!!!!"))
     print(_("A REAL PIONEER!"))
     F9 = int(this_vars.fraction_of_2_weeks * 14)
     days = this_vars.current_date * 14 + F9
