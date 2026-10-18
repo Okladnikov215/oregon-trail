@@ -11,14 +11,14 @@ import json
 import os
 from pathlib import Path
 
-# Глобальное состояние
+# Global state
 _current_language = "en"
 _translations = {}
-_base_language = "en"  # Базовый язык (оригинал)
+_base_language = "en"  # Base language (original)
 
 
 def load_language(lang_code: str):
-    """Загружает переводы для указанного языка."""
+    """Loads translations for the specified language."""
     global _current_language, _translations
     
     i18n_dir = Path(__file__).parent
@@ -31,7 +31,11 @@ def load_language(lang_code: str):
         return
     
     with open(lang_file, 'r', encoding='utf-8') as f:
-        _translations = json.load(f)
+        try:
+            _translations = json.load(f)
+        except json.JSONDecodeError:
+            print(f"Warning: Invalid JSON in language file: {lang_file}")
+            _translations = {}
     
     _current_language = lang_code
 
@@ -63,15 +67,17 @@ def set_language(lang_code: str):
 
 
 def get_available_languages() -> list[str]:
-    """Returns list of available language codes."""
+    """Returns list of available language codes found in the i18n directory."""
     i18n_dir = Path(__file__).parent
     languages = []
     
     for json_file in i18n_dir.glob("*.json"):
-        languages.append(json_file.stem)
-    
+        # Ensure it's a valid language file (e.g., en.json, ru.json)
+        if json_file.is_file():
+            languages.append(json_file.stem)
+            
     return sorted(languages)
 
 
-# Автоматическая загрузка английского при импорте
+# Automatically load English on import
 load_language("en")

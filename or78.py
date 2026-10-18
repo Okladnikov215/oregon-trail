@@ -6,7 +6,7 @@ from or78_4_riders import riders
 from or78_5_events import events
 from or78_6_mountain import mountain
 from or78_7_endings import death, final_turn
-from i18n import _
+from i18n import _, set_language, get_available_languages
 
 """
  The program that follows is a reconstruction
@@ -28,7 +28,43 @@ from i18n import _
 """
 
 
+def select_language():
+    """Prompts the user to select a language from available localizations."""
+    languages = get_available_languages()
+    
+    if not languages:
+        print("No localization files found. Using English.")
+        set_language("en")
+        return
+    
+    print("\nSelect Language:")
+    for i, lang in enumerate(languages):
+        print(f"  {i + 1}. {lang}")
+    
+    while True:
+        try:
+            choice = input("Enter number to select language (or press Enter for English): ").strip()
+            
+            if not choice:
+                set_language("en")
+                break
+            
+            idx = int(choice) - 1
+            if 0 <= idx < len(languages):
+                selected_lang = languages[idx]
+                print(f"Selected language: {selected_lang}")
+                set_language(selected_lang)
+                break
+            else:
+                print("Invalid selection. Please try again.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
 def game():
+    # Allow user to select translation after launch
+    select_language()
+
     g_vars = GameGlobals()
 
     init(g_vars)
